@@ -1,0 +1,8 @@
+---
+- name: Jenkins Master play
+  hosts: jenkins-master
+  become: yes
+  gather_facts: yes
+  roles:
+    - java
+    - jenkins-master

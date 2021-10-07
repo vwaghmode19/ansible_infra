@@ -1,0 +1,13 @@
+[Unit]
+Description=Jenkins Swarm Client Service
+
+[Service]
+WorkingDirectory={{ jenkins_slave_dir }}
+ExecStart={{ jenkins_swarm_service_cmd }}
+User={{ jenkins_slave_user_name }}
+Type=simple
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

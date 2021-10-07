@@ -1,0 +1,14 @@
+---
+# Install jenkins
+- include_tasks: install.yml 
+
+# Configure Jenkins init settings.
+- include_tasks: config.yml
+
+- include_tasks: plugin.yml
+
+- name: restart jenkins
+  service:
+    name: jenkins
+    state: restarted
+...

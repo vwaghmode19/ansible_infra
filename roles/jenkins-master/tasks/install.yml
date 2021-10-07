@@ -1,0 +1,45 @@
+---
+- name: Add Jenkins apt repository key
+  apt_key:
+    url: "{{ jenkins_apt_repo_key_url }}"
+    state: present
+
+- name: Add Jenkins apt repository.
+  apt_repository:
+    repo: "{{ jenkins_apt_repo }}"
+    state: present
+
+
+- name: Download specific Jenkins version.
+  get_url:
+    url: "{{ jenkins_pkg_url }}/jenkins_{{ jenkins_version }}_all.deb"
+    dest: "/tmp/jenkins_{{ jenkins_version }}_all.deb"
+  when: jenkins_version is defined
+
+- name: Check if we downloaded a specific version of Jenkins.
+  stat:
+    path: "/tmp/jenkins_{{ jenkins_version }}_all.deb"
+  register: specific_version
+
+- name: Install specific version of Jenkins.
+  apt:
+    deb: "/tmp/jenkins_{{ jenkins_version }}_all.deb"
+    state: present
+  when: jenkins_version is defined and specific_version.stat.exists
+
+- name: Ensure Jenkins is installed.
+  apt:
+    name: jenkins
+    state: present
+
+- name: Ensure jenkins_home {{ jenkins_home }} exists.
+  file:
+    path: "{{ jenkins_home }}"
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: 0755
+
+- name: start Jenkins
+  service: name=jenkins state=started
+...

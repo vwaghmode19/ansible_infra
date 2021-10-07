@@ -1,0 +1,9 @@
+- name: Jenkins Slave
+  hosts: jenkins-slave
+  #vars_files:
+  #  - my_vault.yml
+  gather_facts: yes
+  roles:
+    - java
+    - jenkins-slave
+...

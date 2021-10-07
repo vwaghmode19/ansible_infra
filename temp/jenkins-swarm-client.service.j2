@@ -1,0 +1,14 @@
+[Unit]
+Description= Jenkins Swarm Client
+
+[Service]
+User=jenkins
+WorkingDirectory={{ jenkins_slave_dir }}
+ExecStart=/usr/bin/sh {{ jenkins_slave_dir }}/jenkins-swarm-client.sh start
+ExecStop=/usr/bin/sh {{ jenkins_slave_dir }}/jenkins-swarm-client.sh stop
+Type=simple
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

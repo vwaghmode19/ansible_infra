@@ -1,0 +1,15 @@
+---
+jenkins_master_url: "http://192.168.43.148:8080/"
+jenkins_master_username: admin
+jenkins_master_api_token: '110d0ce7431e46b2bcb5909ddeef7a1c96'
+
+
+jenkins_plugin_url: "https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins"
+jenkins_swarm_client_version: 3.28
+jenkins_swarm_client_jar_url: "{{ jenkins_plugin_url }}/swarm-client/{{ jenkins_swarm_client_version }}/swarm-client-{{ jenkins_swarm_client_version }}.jar"
+jenkins_swarm_client_service_name: jenkins_swarm_client.service
+
+no_of_retries: 3
+no_of_executors: 2
+
+...

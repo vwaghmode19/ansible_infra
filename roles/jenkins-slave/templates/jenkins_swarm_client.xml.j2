@@ -1,0 +1,9 @@
+<service>
+  <id>jenkinsSwarmClient</id>
+  <name>Jenkins Swarm Client</name>
+  <description>This service used to connect to Jenkins Master as an agent</description>
+  <executable>{{ java_exe }}</executable>
+  <arguments>{{ jenkins_swarm_run_args }}</arguments>
+  <log mode="roll" />
+  <onfailure action="restart" />
+</service>

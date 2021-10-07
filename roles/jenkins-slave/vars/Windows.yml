@@ -1,0 +1,16 @@
+---
+jenkins_slave_user_name: jenkins
+jenkins_slave_user_password: Hem1ant21
+
+jenkins_slave_user_group: "{{ jenkins_slave_user_name }}"
+jenkins_slave_user_groups: ''       # Additional Jekins user groups
+
+jenkins_slave_name: jenkins-{{ ansible_os_family }}-agent
+jenkins_slave_dir: C:\Users\{{ jenkins_slave_user_name }}\agent
+
+jenkins_swarm_run_args: -jar {{ jenkins_slave_dir }}\swarm-client-{{ jenkins_swarm_client_version }}.jar -name {{ jenkins_slave_name}} -fsroot {{ jenkins_slave_dir }} -username {{jenkins_master_username}} -password {{ jenkins_master_api_token }} -master {{ jenkins_master_url }} -executors {{ no_of_executors}} -disableSslVerification -retry {{ no_of_retries}}
+
+java_exe: C:\Program Files\Java\jdk1.8.0_211\bin\java.exe
+java_home: C:\Program Files\Java\jdk1.8.0_211\bin
+winsw_home: C:\Program Files\WinSW\bin\
+...

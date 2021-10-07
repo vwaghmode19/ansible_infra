@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+SERVICE_NAME=jenkins-swarm-client
+JAR_FILE="{{ jenkins_slave_dir }}/swarm-client-{{ jenkins_swarm_client_version }}.jar"
+PID_FILE="{{ jenkins_slave_dir }}/jenkins-swarm-client.pid"
+
+case $1 in
+        start)
+          if [ ! -f $PID_FILE ] ; then
+		echo "Starting $SERVICE_NAME ..."
+		nohup java -jar {{ jenkins_slave_dir }}/swarm-client-{{ jenkins_swarm_client_version }}.jar -name {{ jenkins_slave_name}} -fsroot {{ jenkins_slave_dir }} -username {{jenkins_master_username}} -password {{ jenkins_master_api_token }} -master {{ jenkins_master_url }} -executors {{ no_of_executors}} -disableSslVerification -retry {{ no_of_retries}} > {{ jenkins_slave_dir }}/jenkins-swarm-client.log &
+			
+		echo $! > $PID_FILE
+		echo "$SERVICE_NAME started ..."
+	  else
+		echo "$SERVICE_NAME is already running ..."
+	  fi
+        ;;
+        stop)
+          if [ -f $PID_FILE ]; then
+                PID=$(cat $PID_FILE);
+                echo "$SERVICE_NAME stoping ..."
+                kill $PID;
+                echo "$SERVICE_NAME stopped ..."
+                rm -f $PID_FILE
+          else
+		echo "$SERVICE_NAME is not running ..."
+          fi
+        ;;
+        restart)
+          if [ -f $PID_FILE ]; then
+                PID=$(cat $PID_FILE);
+                echo "$SERVICE_NAME stopping ...";
+                kill $PID;
+                echo "$SERVICE_NAME stopped ...";
+                rm -f $PID_FILE
+
+                echo "$SERVICE_NAME starting ..."
+                nohup java -jar {{ jenkins_slave_dir }}/swarm-client-{{ jenkins_swarm_client_version }}.jar -name {{ jenkins_slave_name}} -fsroot {{ jenkins_slave_dir }} -username {{jenkins_master_username}} -password {{ jenkins_master_api_token }} -master {{ jenkins_master_url }} -executors {{ no_of_executors}} -disableSslVerification -retry {{ no_of_retries}} > {{ jenkins_slave_dir }}/jenkins-swarm-client.log &
+                echo $! > $PID_FILE
+                echo "$SERVICE_NAME started ..."
+          else
+                echo "$SERVICE_NAME is not running ..."
+          fi
+        ;;
+esac
