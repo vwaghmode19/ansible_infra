@@ -5,7 +5,7 @@
 
 [jenkins-slave]
 192.168.43.197
-#192.168.43.143 ansible_user=vikas ansible_password='Vikas@678' ansible_connection=winrm ansible_port=5986 ansible_winrm_server_cert_validation=ignore
+192.168.43.143 ansible_user=vikas ansible_password='Vikas@678' ansible_connection=winrm ansible_port=5986 ansible_winrm_server_cert_validation=ignore
 
 
 
