@@ -1,5 +1,5 @@
 ---
-- name: provide extra options for starting the service
+- name: Template | provide extra options for starting the service
   template:
     src: jenkins.j2
     dest: "{{ jenkins_init_file }}"
@@ -7,7 +7,7 @@
     group: "{{ jenkins_process_group }}"
     mode: 0775
 
-- name: Create custom init scripts directory.
+- name: File | Create custom init scripts directory.
   file:
     path: "{{ jenkins_init_groovy_d }}"
     state: directory
@@ -15,7 +15,7 @@
     group: "{{ jenkins_process_group }}"
     mode: 0775
 
-- name: configure default users and basic security
+- name: Template | configure default users and basic security
   template:
     src: basic-security.groovy.j2
     dest: "{{ jenkins_init_groovy_d }}/basic-security.groovy"
@@ -23,7 +23,7 @@
     group: "{{ jenkins_process_group }}"
     mode: 0775
 
-- name: Get the jenkins-cli jarfile from the Jenkins server.
+- name: Get URL | Download jenkins-cli jarfile from the Jenkins server.
   get_url:
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/jnlpJars/jenkins-cli.jar"
     dest: "{{ jenkins_jar_location }}"
@@ -33,10 +33,10 @@
   delay: 10
   check_mode: false
 
-- name: Immediately restart Jenkins on http or home or init changes.
+- name: Service | Immediately restart Jenkins on http or home or init changes.
   service: name=jenkins state=restarted
 
-- name: Wait for Jenkins to start up before proceeding.
+- name: URI | Wait for Jenkins to start up before proceeding.
   uri:
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/cli/"
     method: GET
@@ -52,9 +52,8 @@
   changed_when: false
   check_mode: false
 
-- name: Remove Jenkins security init scripts after first startup.
+- name: File | Remove Jenkins security init scripts after first startup.
   file:
     path: "{{ jenkins_init_groovy_d }}/basic-security.groovy"
     state: absent
-
 ...

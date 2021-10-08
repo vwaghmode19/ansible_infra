@@ -1,5 +1,5 @@
 ---
-- name: Ensure Jenkins account is present
+- name: User | Create User
   win_user:
     name: "{{ jenkins_slave_user_name }}"
     description: Created for Jenkins Swarm Client
@@ -8,75 +8,75 @@
     state: present
     groups: "{{ jenkins_slave_user_groups }}"
 
-- name: Add account to Log on as a service. # This is required to run the service as jenkins user
+- name: User Rights | Add account to Log on as a service. # This is required to run the service as jenkins user
   win_user_right:
     name: SeServiceLogonRight
     users:
     - "{{ jenkins_slave_user_name }}"
     action: add
 
-- name: Create Jenkins Agent Folder
+- name: File | Create Jenkins Agent Folder
   win_file:
     path: "{{ jenkins_slave_dir }}"
     state: directory
 
-- name: Change owner of the folder - Jenkins Agent
+- name: Owner | Change owner of the folder - Jenkins Agent
   win_owner:
     path: "{{ jenkins_slave_dir }}"
     user: "{{ jenkins_slave_user_name }}"
     recurse: yes
 
-- name: Download Swarm Client
+- name: Get URL | Download Swarm Client
   win_get_url:
     url: "{{ jenkins_swarm_client_jar_url }}"
     dest: "{{ jenkins_slave_dir }}"
 
-- name: Create WinSW home path
+- name: File | Create WinSW home path
   win_file:
     path: "{{ winsw_home }}"
     state: directory
 
-- name: Copy WinSW executable (Windows Service Wrapper)
+- name: Copy | Copy WinSW executable (Windows Service Wrapper)
   win_copy:
     src: files/winsw.exe
     dest: "{{ winsw_home }}"
 
-- name: Copy service config file
+- name: Copy | Copy service config file
   win_template:
     src: jenkins_swarm_client.xml.j2
     dest: "{{ winsw_home }}winsw.xml"
-
-- name: Stop the service
+	
+- name: Command | Stop the service
   win_command: winsw stop
   args:
     chdir: "{{ winsw_home }}"
   ignore_errors: True
 
-- name: Uninstall the Service using winsw
+- name: Command | Uninstall the Service using winsw
   win_command: winsw uninstall
   args:
     chdir: "{{ winsw_home }}"
   ignore_errors: True
 
 
-- name: Install the Service using winsw
+- name: Command | Install the Service using winsw
   win_command: winsw install
   args:
     chdir: "{{ winsw_home }}"
 
-- name: Start the Service using winsw
+- name: Command | Start the Service using winsw
   win_command: winsw start
   args:
     chdir: "{{ winsw_home }}"
 
-#- name: Install the jenkins-swarm-client service
+#- name: NSSM | Install the jenkins-swarm-client service
 #  win_nssm:
 #    name: "{{ jenkins_swarm_client_service_name }}"
 #    description: Jenkins swarm client to connect to Jenkins Master
 #    application: "{{ java_exe }}"
 #    arguments: "{{ jenkins_swarm_run_args }}"
 #
-#- name: Configure and start the jenkins-swarm-client service
+#- name: Service | Configure and start the jenkins-swarm-client service
 #  win_service:
 #    name: "{{ jenkins_swarm_client_service_name }}"
 #    description: Jenkins swarm client to connect to Jenkins Master

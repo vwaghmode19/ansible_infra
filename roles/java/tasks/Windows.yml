@@ -1,5 +1,5 @@
 ---
-- name: Install java package
+- name: Choco | Install java package
   win_chocolatey:
     name: '{{ item }}'
     state: present

@@ -7,7 +7,7 @@
 
 - include_tasks: plugin.yml
 
-- name: restart jenkins
+- name: Service | restart jenkins
   service:
     name: jenkins
     state: restarted

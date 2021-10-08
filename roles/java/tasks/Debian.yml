@@ -1,11 +1,11 @@
 ---
-- name: Install java package
+- name: Apt | Install java package
   apt:
     name: "{{ java_packages }}"
     state: present
 
 # Environment setup
-- name: Set JAVA_HOME if configured.
+- name: Template | Set JAVA_HOME if configured.
   template:
     src: java_home.sh.j2
     dest: /etc/profile.d/java_home.sh
