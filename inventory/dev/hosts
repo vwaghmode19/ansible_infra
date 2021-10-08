@@ -1,10 +1,10 @@
 # Default hosts location is /etc/ansible/hosts
 
 [jenkins-master]
-#192.168.43.197
-192.168.43.103
+#192.168.43.197 ansible_become=yes
+192.168.43.103 ansible_become=yes
 
 [jenkins-slave]
-#192.168.43.197
-192.168.43.103
+#192.168.43.197 ansible_become=yes
+192.168.43.103 ansible_become=yes
 192.168.43.143 ansible_user=username ansible_password='password' ansible_connection=winrm ansible_port=5986 ansible_winrm_server_cert_validation=ignore
