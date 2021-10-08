@@ -1,11 +1,10 @@
 ---
-#- name: Jenkins Master
-#  hosts: jenkins-master
-#  become: yes
-#  gather_facts: yes
-#  roles:
-#    - java
-#    - jenkins-master
+- name: Jenkins Master
+  hosts: jenkins-master
+  gather_facts: yes
+  roles:
+    - java
+    - jenkins-master
 
 - name: Jenkins Slave
   hosts: jenkins-slave
