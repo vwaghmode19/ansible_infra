@@ -22,7 +22,8 @@ All are defined under defaults/ and vars/ of each role.
 		- Jenkins Master should be running on Unix Box.
 
 # Example Playbook:
-
+---------------------
+---
 - name: Jenkins Master
   hosts: jenkins-master
   gather_facts: yes
@@ -38,6 +39,7 @@ All are defined under defaults/ and vars/ of each role.
   roles:
     - java
     - jenkins-slave
+...
 
 # References:
 
