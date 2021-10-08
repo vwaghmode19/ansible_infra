@@ -4,6 +4,6 @@
     - vault/dev.yml
   gather_facts: yes
   roles:
-    - java
+#    - java
     - jenkins-slave
 ...

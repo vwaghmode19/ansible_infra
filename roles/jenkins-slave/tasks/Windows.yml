@@ -46,6 +46,19 @@
     src: jenkins_swarm_client.xml.j2
     dest: "{{ winsw_home }}winsw.xml"
 
+- name: Stop the service
+  win_command: winsw stop
+  args:
+    chdir: "{{ winsw_home }}"
+  ignore_errors: True
+
+- name: Uninstall the Service using winsw
+  win_command: winsw uninstall
+  args:
+    chdir: "{{ winsw_home }}"
+  ignore_errors: True
+
+
 - name: Install the Service using winsw
   win_command: winsw install
   args:
