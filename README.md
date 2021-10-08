@@ -23,7 +23,7 @@ All are defined under defaults/ and vars/ of each role.
 
 # Example Playbook:
 
-<!-- - name: Jenkins Master
+** - name: Jenkins Master
   hosts: jenkins-master
   gather_facts: yes
   roles:
@@ -37,7 +37,7 @@ All are defined under defaults/ and vars/ of each role.
   gather_facts: yes
   roles:
     - java
-    - jenkins-slave -->
+    - jenkins-slave **
 
 # References:
 
