@@ -23,21 +23,7 @@ All are defined under defaults/ and vars/ of each role.
 
 # Example Playbook:
 
-** - name: Jenkins Master
-  hosts: jenkins-master
-  gather_facts: yes
-  roles:
-    - java
-    - jenkins-master
-
-- name: Jenkins Slave
-  hosts: jenkins-slave
-  vars_files:
-    - vault/dev.yml
-  gather_facts: yes
-  roles:
-    - java
-    - jenkins-slave **
+Please check jenkins_site.yml
 
 # References:
 
