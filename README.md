@@ -5,18 +5,18 @@
 2. jenkins-master: Set up jenkins master environment on Unix server. Here its for Debian system
 3. jenkins-slave: Set up jenkins slave based upon ansible_os_family viz Debian, Windows
 
-Prerequisites:
+# Prerequisites:
 ------------
 
 1. Password less ssh from Ansible controller to remote machine is required.
 2. WinRM set up on windows hosts 
 
-Role Variables:
+# Role Variables:
 --------------
 
 All are defined under defaults/ and vars/ of each role.
 
-Dependencies:
+# Dependencies:
 ------------
 
 1. For java Role: NA
@@ -25,10 +25,9 @@ Dependencies:
 		- java role
 		- Jenkins Master should be running on Unix Box.
 
-Example Playbook:
+# Example Playbook:
 ----------------
 
----
 - name: Jenkins Master
   hosts: jenkins-master
   gather_facts: yes
@@ -44,22 +43,21 @@ Example Playbook:
   roles:
     - java
     - jenkins-slave
-...
 
-References:
+# References:
 ----------------
 
-geerlingguy/ansible-role-jenkins -- > https://github.com/geerlingguy/ansible-role-jenkins
-johnbuhay/setup-users.groovy -- > https://gist.github.com/johnbuhay/c6213d3d12c8f848a385
-winsw/winsw -- > https://github.com/winsw/winsw
+1. geerlingguy/ansible-role-jenkins -- > https://github.com/geerlingguy/ansible-role-jenkins
+2. johnbuhay/setup-users.groovy -- > https://gist.github.com/johnbuhay/c6213d3d12c8f848a385
+3. winsw/winsw -- > https://github.com/winsw/winsw
 
 
-License:
+# License:
 -------
 
 BSD
 
-Author Information:
+# Author Information:
 ------------------
 
 Name: V Waghmode
