@@ -1,31 +1,15 @@
 ---
 # Variable setup.
-- name: Include vars | Include Windows variables
-  include_vars: Windows.yml
-  when: ansible_os_family == "Windows"
-
-- name: Include vars | Include Debian variables
-  include_vars: Debian.yml
-  when: ansible_os_family == "Debian"
-
-- name: Include vars | Include Default variables for any other OS
-  include_vars: Default.yml
-  #when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
-  when: ansible_facts['os_family'] != "Debian" or ansible_facts['os_family'] != "Windows"
-
+- name: Include vars | Include OS Specific Variables
+  include_vars: "{{ ansible_os_family }}.yml" 
 
 # Setup/install tasks.
-- name: Include Task | Include Windows Task 
-  include_tasks: Windows.yml
-  when: ansible_os_family == "Windows"
+- name: Include Task | Include OS Specific Tasks
+  include_tasks: "{{ ansible_os_family }}.yml"
 
-- name: Include Task | Include Debian Task
-  include_tasks: Debian.yml
-  when: ansible_os_family == "Debian"
-
-- name: Include Task | Include default task for other OSs
+- name: Include Task | Include default task if OS is out of defined one
   include_tasks: Default.yml
-  #  when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
-  when: ansible_facts['os_family'] != "Debian" or ansible_facts['os_family'] != "Windows"
+  #  when: ansible_os_family != "Windows" or ansible_os_family != "Debian" or ansible_os_family !=  "RedHat"
+  when: ansible_facts['os_family'] != 'Debian' or ansible_facts['os_family'] != 'Windows' or ansible_facts['os_family'] != 'RedHat'
 
 ...
