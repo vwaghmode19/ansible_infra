@@ -2,7 +2,7 @@
 - hosts: jenkins-master
   become: yes
   tasks:
-    - name: stop jenkins
+    - name: Stop jenkins
       service:
         name: jenkins
         state: stopped
@@ -12,8 +12,4 @@
         name: jenkins 
         state: absent
         purge: yes
-
-    - name: remove sources
-      file: /etc/apt/sources.list.d/jenkins.list
-      state: absent
 ...
