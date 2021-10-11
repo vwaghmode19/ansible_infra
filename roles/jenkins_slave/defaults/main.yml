@@ -1,7 +1,7 @@
 ---
 jenkins_master_url: "http://192.168.43.197:8080/"
 jenkins_master_username: admin
-jenkins_master_api_token: 'ad1min@9254'
+jenkins_master_api_token: "{{ dev_vault_jenkins_admin_password }}"      # Do not encrypt it as it's being used in systemd service ExecStart Unit
 
 
 jenkins_plugin_url: "https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins"

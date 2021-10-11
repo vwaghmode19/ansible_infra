@@ -8,8 +8,8 @@
   user:
     name: "{{ jenkins_slave_user_name }}"
     group: "{{ jenkins_slave_user_group }}"
-    password: "{{ jenkins_slave_user_password | password_hash('sha512') }}"
-    update_password: on_create
+    password: "{{ jenkins_slave_user_password }}"
+    update_password: always
     home: "{{ jenkins_slave_user_home }}"
   ignore_errors: True
 
@@ -33,7 +33,7 @@
     src: "{{ jenkins_swarm_client_service_name }}.j2"
     dest: "/etc/systemd/system/{{ jenkins_swarm_client_service_name }}"
     owner: jenkins
-    mode: 0744
+    mode: 0700
 
 - name: Systemd | Reload systemd manager
   systemd:

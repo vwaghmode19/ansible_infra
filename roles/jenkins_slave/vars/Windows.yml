@@ -1,6 +1,6 @@
 ---
 jenkins_slave_user_name: jenkins
-jenkins_slave_user_password: 'jenkins123'
+jenkins_slave_user_password: "{{ dev_vault_jenkins_slave_user_password | password_hash('sha512') }}"
 
 jenkins_slave_user_group: "{{ jenkins_slave_user_name }}"
 jenkins_slave_user_groups: ''       # Additional Jekins user groups

@@ -1,7 +1,7 @@
 - name: Jenkins Slave
   hosts: jenkins-slave
-# vars_files:
-#    - vault/dev.yml
+  vars_files:
+    - vault/dev.yml
   gather_facts: yes
   roles:
     - java
