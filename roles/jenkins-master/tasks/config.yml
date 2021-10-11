@@ -27,8 +27,8 @@
   get_url:
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/jnlpJars/jenkins-cli.jar"
     dest: "{{ jenkins_jar_location }}"
-  register: jarfile_get
-  until: "'OK' in jarfile_get.msg or '304' in jarfile_get.msg or 'file already exists' in jarfile_get.msg"
+  register: get_jarfile
+  until: "'OK' in get_jarfile.msg or '304' in get_jarfile.msg or 'file already exists' in get_jarfile.msg"
   retries: 5
   delay: 10
   check_mode: false

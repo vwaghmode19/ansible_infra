@@ -17,7 +17,7 @@ jenkins_hostname: localhost
 jenkins_http_port: 8080
 jenkins_port: 8080
 jenkins_jar_location: /opt/jenkins-cli.jar
-jenkins_connection_retries: 60
+jenkins_connection_retries: 10
 jenkins_connection_delay: 5
 
 # basic-security.groovy

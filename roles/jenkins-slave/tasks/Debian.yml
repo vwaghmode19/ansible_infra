@@ -9,11 +9,8 @@
     name: "{{ jenkins_slave_user_name }}"
     group: "{{ jenkins_slave_user_group }}"
     password: "{{ jenkins_slave_user_password | password_hash('sha512') }}"
-    shell: /bin/bash
     update_password: on_create
-    generate_ssh_key: yes
     home: "{{ jenkins_slave_user_home }}"
-    move_home: yes
 
 - name: File | Create Jenkins Agent Directrory
   file:
