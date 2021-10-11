@@ -1,0 +1,4 @@
+---
+- debug:
+    msg: Target OS is "{{ ansible_os_family }}" for which kindly define the tasks in "{{ ansible_os_family }}".yml file and then try.
+...

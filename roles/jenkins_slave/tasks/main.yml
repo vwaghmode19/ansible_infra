@@ -1,0 +1,29 @@
+---
+# Variable setup.
+- name: Include vars | Include Windows variables
+  include_vars: Windows.yml
+  when: ansible_os_family == "Windows"
+
+- name: Include vars | Include Debian variables
+  include_vars: Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Include vars | Include Default variables for any other OS
+  include_vars: Default.yml
+  when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
+
+
+# Setup/install tasks.
+- name: Include Task | Include Windows Task 
+  include_tasks: Windows.yml
+  when: ansible_os_family == "Windows"
+
+- name: Include Task | Include Debian Task
+  include_tasks: Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Include Task | Include default task for other OSs
+  include_tasks: Default.yml
+  when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
+
+...

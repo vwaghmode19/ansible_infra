@@ -5,5 +5,5 @@
   gather_facts: yes
   roles:
     - java
-    - jenkins-master
+    - jenkins_master
 ...

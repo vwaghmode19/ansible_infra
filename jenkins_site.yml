@@ -4,7 +4,7 @@
   gather_facts: yes
   roles:
     - java
-    - jenkins-master
+    - jenkins_master
 
 - name: Jenkins Slave
   hosts: jenkins-slave
@@ -13,5 +13,5 @@
   gather_facts: yes
   roles:
     - java
-    - jenkins-slave
+    - jenkins_slave
 ...

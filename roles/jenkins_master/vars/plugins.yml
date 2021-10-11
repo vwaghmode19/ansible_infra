@@ -1,8 +1,8 @@
 # Plugin list can use the plugin name, or a name/version dict.
 jenkins_plugins:
-  - name: Ant
-    version: 1.12
-  - name: Credentials
-    version: 2.6.1
+  - name: ant
+    version: 1.10
+  - name: credentials
+    version: 2.4
   - name: swarm
     version: 3.25
