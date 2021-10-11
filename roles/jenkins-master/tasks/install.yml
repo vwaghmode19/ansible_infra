@@ -4,10 +4,10 @@
     url: "{{ jenkins_apt_repo_key_url }}"
     state: present
 
-- name: Apt Repository | Add Jenkins apt repository.
-  apt_repository:
-    repo: "{{ jenkins_apt_repo }}"
-    state: present
+#- name: Apt Repository | Add Jenkins apt repository.
+#  apt_repository:
+#    repo: "{{ jenkins_apt_repo }}"
+#    state: present
 
 
 - name: Get URL | Download specific Jenkins version.

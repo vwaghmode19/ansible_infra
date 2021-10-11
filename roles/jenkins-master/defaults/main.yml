@@ -13,7 +13,7 @@ jenkins_process_group: "{{ jenkins_process_user }}"
 
 jenkins_init_groovy_d: "{{ jenkins_home }}/init.groovy.d"
 
-jenkins_hostname: localhost
+jenkins_hostname: 192.168.43.25
 jenkins_http_port: 8080
 jenkins_port: 8080
 jenkins_jar_location: /opt/jenkins-cli.jar
