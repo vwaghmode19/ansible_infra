@@ -22,7 +22,7 @@ jenkins_connection_delay: 5
 
 # basic-security.groovy
 jenkins_admin_username: admin
-jenkins_admin_password: "ad1min@9254"
+jenkins_admin_password: "{{ dev_vault_jenkins_admin_password }}"
 jenkins_admin_password_file: ""
 
 # jenkins.j2
