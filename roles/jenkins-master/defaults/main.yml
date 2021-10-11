@@ -13,9 +13,9 @@ jenkins_process_group: "{{ jenkins_process_user }}"
 
 jenkins_init_groovy_d: "{{ jenkins_home }}/init.groovy.d"
 
-jenkins_hostname: 192.168.43.25
+jenkins_hostname: localhost
 jenkins_http_port: 8080
-jenkins_port: 8080
+jenkins_port: "{{ jenkins_http_port }}"
 jenkins_jar_location: /opt/jenkins-cli.jar
 jenkins_connection_retries: 10
 jenkins_connection_delay: 5
@@ -43,4 +43,3 @@ jenkins_proxy_noproxy:
   - "127.0.0.1"
   - "localhost"
 ...
-

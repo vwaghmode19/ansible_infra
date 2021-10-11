@@ -1,7 +1,7 @@
 ---
-jenkins_master_url: "http://vikas-VirtualBox:8080/"
+jenkins_master_url: "http://192.168.43.197:8080/"
 jenkins_master_username: admin
-jenkins_master_api_token: '118ba3769a985df083e20c569ff326dd29'
+jenkins_master_api_token: 'ad1min@9254'
 
 
 jenkins_plugin_url: "https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins"
