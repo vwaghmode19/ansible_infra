@@ -10,7 +10,8 @@
 
 - name: Include vars | Include Default variables for any other OS
   include_vars: Default.yml
-  when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
+  #when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
+  when: ansible_facts['os_family'] != "Debian" or ansible_facts['os_family'] != "Windows"
 
 
 # Setup/install tasks.
@@ -24,6 +25,7 @@
 
 - name: Include Task | Include default task for other OSs
   include_tasks: Default.yml
-  when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
+  #  when: ansible_os_family != "Windows" or ansible_os_family != "Debian"
+  when: ansible_facts['os_family'] != "Debian" or ansible_facts['os_family'] != "Windows"
 
 ...
