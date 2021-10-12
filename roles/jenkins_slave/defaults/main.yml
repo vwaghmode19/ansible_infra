@@ -1,7 +1,9 @@
 ---
 #jenkins_master_url: "http://192.168.43.195:8080/"
 #jenkins_master_url: "http:/192.168.43.25:8080/"
-jenkins_master_url: "http://{{ hostvars['unix_node1']['ansible_host'] }}:8080"
+jenkins_master_host: "{{ hostvars['unix_node1']['ansible_host'] }}"
+jenkins_master_port: 8080
+jenkins_master_url: "http://{{ jenkins_master_host }}:{{ jenkins_master_port }}"
 jenkins_master_username: admin
 jenkins_master_api_token: "{{ dev_vault_jenkins_admin_password }}"      # Do not encrypt it as it's being used in systemd service ExecStart Unit
 
