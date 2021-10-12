@@ -1,6 +1,6 @@
 ---
 ansible_user: vikas
-ansible_password: 'Vikas@678'
+ansible_password: 'password123'
 ansible_connection: winrm
 ansible_port: 5986
 ansible_winrm_server_cert_validation: ignore
