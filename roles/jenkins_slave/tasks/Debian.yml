@@ -46,6 +46,6 @@
     enabled: yes
     masked: no
     state: started
-  async: 180
-  poll: 0
+# async: 180
+# poll: 0
 ...
