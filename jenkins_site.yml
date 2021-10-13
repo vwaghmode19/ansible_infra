@@ -1,19 +1,4 @@
 ---
-- name: Jenkins Master
-  hosts: jenkins-master
-  vars_files:
-    - vault/dev.yml
-  gather_facts: yes
-  roles:
-    - java
-    - jenkins_master
-
-- name: Jenkins Slave
-  hosts: jenkins-slave
-  vars_files:
-    - vault/dev.yml
-  gather_facts: yes
-  roles:
-    - java
-    - jenkins_slave
+- import_playbook: jenkins_master.yml
+- import_playbook: jenkins_slave.yml
 ...

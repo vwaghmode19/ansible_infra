@@ -1,7 +1,5 @@
 ---
-#jenkins_master_url: "http://192.168.43.195:8080/"
-#jenkins_master_url: "http:/192.168.43.25:8080/"
-jenkins_master_host: "{{ hostvars['unix_node1']['ansible_host'] }}"
+jenkins_master_host: '{{ hostvars[groups["jenkins-master"][0]].ansible_host }}'
 jenkins_master_port: 8080
 jenkins_master_url: "http://{{ jenkins_master_host }}:{{ jenkins_master_port }}"
 jenkins_master_username: admin
