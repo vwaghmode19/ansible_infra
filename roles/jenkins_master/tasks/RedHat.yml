@@ -1,0 +1,33 @@
+---
+- name: Get URL | Install Jenkins Repo
+  get_url:
+    url: "{{ jenkins_repo_url }}"
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: RPM Key | Add Jenkins repo GPG key.
+  rpm_key:
+    key: "{{ jenkins_repo_key_url }}"
+    state: present
+
+- name: Get URL | Download specific Jenkins version.
+  get_url:
+    url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+    dest: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+  when: jenkins_version is defined
+
+- name: Stat | Check if we downloaded a specific version of Jenkins.
+  stat:
+    path: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+  register: specific_version
+
+- name: Package | Install specific version of Jenkins.
+  package:
+    name: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+    state: present
+  when: jenkins_version is defined and specific_version.stat.exists
+
+- name: Ensure Jenkins is installed.
+  package:
+    name: jenkins
+    state: present
+...

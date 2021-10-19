@@ -1,0 +1,51 @@
+---
+- name: Group | Create jenkins group
+  group:
+    name: "{{ jenkins_slave_user_group }}"
+    state: present
+
+- name: User | Create jenkins user
+  user:
+    name: "{{ jenkins_slave_user_name }}"
+    group: "{{ jenkins_slave_user_group }}"
+    password: "{{ jenkins_slave_user_password }}"
+    update_password: always
+    home: "{{ jenkins_slave_user_home }}"
+  ignore_errors: True
+
+- name: File | Create Jenkins Agent Directrory
+  file:
+    path: "{{ jenkins_slave_dir }}"
+    state: directory
+    owner: "{{ jenkins_slave_user_name }}"
+
+- name: Get URL | Download Swarm Client
+  get_url:
+    url: "{{ jenkins_swarm_client_jar_url }}"
+    dest: "{{ jenkins_slave_dir }}"
+    owner: "{{ jenkins_slave_user_name }}"
+    group: "{{ jenkins_slave_user_group }}"
+    mode: 0755
+    force: no
+
+- name: Template | Place jenkins-swarm-client service file to systemd
+  template:
+    src: "{{ jenkins_swarm_client_service_name }}.j2"
+    dest: "/etc/systemd/system/{{ jenkins_swarm_client_service_name }}"
+    owner: jenkins
+    mode: 0700
+
+- name: Systemd | Reload systemd manager
+  systemd:
+    name: "{{ jenkins_swarm_client_service_name }}"
+    daemon_reload: yes
+
+- name: Systemd | Enable jenkins-swarm-client service and start it
+  systemd:
+    name: "{{ jenkins_swarm_client_service_name }}"
+    enabled: yes
+    masked: no
+    state: started
+# async: 180
+# poll: 0
+...

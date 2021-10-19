@@ -1,0 +1,6 @@
+---
+- name: Yum | Install java package
+  yum:
+    name: "{{ java_packages }}"
+    state: present
+...
