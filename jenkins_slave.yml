@@ -1,5 +1,5 @@
 - name: Jenkins Slave
-  hosts: jenkins-slave
+  hosts: jenkins_slave
   vars_files:
     - vault/dev.yml
   gather_facts: yes

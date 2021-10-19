@@ -1,11 +1,15 @@
 ---
-# Install jenkins
-- include_tasks: install.yml 
+- name: Include vars | Include OS Specific Variables
+  include_vars: "{{ ansible_os_family }}.yml"
 
-# Configure Jenkins init settings.
-- include_tasks: config.yml
+- name: Include Task | Include OS Specific Tasks
+  include_tasks: "{{ ansible_os_family }}.yml"
 
-- include_tasks: plugin.yml
+- name: Include Task | Configure Jenkins
+  include_tasks: config.yml
+
+- name: Include Task | Install Plugins
+  include_tasks: plugin.yml
 
 - name: Service | restart jenkins
   service:

@@ -1,8 +1,9 @@
 ---
 - name: Jenkins Master play
-  hosts: jenkins-master
-  become: yes
+  hosts: jenkins_master
   gather_facts: yes
+  vars_files:
+    - vault/dev.yml
   roles:
     - java
     - jenkins_master

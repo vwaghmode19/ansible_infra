@@ -33,7 +33,7 @@
   delay: 10
   check_mode: false
 
-- name: Service | Immediately restart Jenkins on http or home or init changes.
+- name: Service | Restart Jenkins to get init changes applied
   service: name=jenkins state=restarted
 
 - name: URI | Wait for Jenkins to start up before proceeding.

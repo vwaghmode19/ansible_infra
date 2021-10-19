@@ -2,12 +2,10 @@
 
 localhost 	ansible_connection=local
 
-[jenkins-master]
-unix_node1 	ansible_host=192.168.43.195
-#my_unix_node1 	ansible_host=192.168.43.25
+[jenkins_master]
+10.128.89.70	ansible_host=10.128.89.70
 
-[jenkins-slave]
-unix_node2 	ansible_host=192.168.43.197
-#my_unix_node2 	ansible_host=192.168.43.160
-#my_win 		ansible_host=192.168.43.143
+[jenkins_slave]
+10.128.89.102 	ansible_host=10.128.89.102
+my_win 		ansible_host=10.128.43.22
 
