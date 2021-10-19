@@ -6,6 +6,6 @@ localhost 	ansible_connection=local
 10.128.89.70	ansible_host=10.128.89.70
 
 [jenkins_slave]
-10.128.89.102 	ansible_host=10.128.89.102
+linux_slave1 	ansible_host=10.128.89.102
 my_win 		ansible_host=10.128.43.22
 
