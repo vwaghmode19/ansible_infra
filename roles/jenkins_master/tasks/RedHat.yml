@@ -3,16 +3,19 @@
   get_url:
     url: "{{ jenkins_repo_url }}"
     dest: /etc/yum.repos.d/jenkins.repo
+    validate_certs: no
 
 - name: RPM Key | Add Jenkins repo GPG key.
   rpm_key:
     key: "{{ jenkins_repo_key_url }}"
     state: present
+    validate_certs: no
 
 - name: Get URL | Download specific Jenkins version.
   get_url:
     url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
     dest: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+    validate_certs: no
   when: jenkins_version is defined
 
 - name: Stat | Check if we downloaded a specific version of Jenkins.
@@ -30,4 +33,9 @@
   package:
     name: jenkins
     state: present
+
+- name: Service | start jenkins
+  service:
+    name: jenkins
+    state: started
 ...
