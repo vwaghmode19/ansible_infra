@@ -1,8 +1,8 @@
 ---
-ansible_user: Administrator
-my_win_ansible_password: 'nicecti1!'
-ansible_password: "{{ dev_vault_my_win_ansible_password }}"
+ansible_user: Vikas
+ansible_password: 'Vikas123'
 ansible_connection: winrm
-ansible_port: 5986
+ansible_port: 5985
 ansible_winrm_server_cert_validation: ignore
+#ansible_winrm_transport: ntlm
 ...

@@ -1,0 +1,15 @@
+---
+jenkins_slave_user_name: jenkins        # Jenkins user name
+jenkins_slave_user_password: "{{ dev_vault_jenkins_slave_user_password | password_hash('sha512') }}"
+
+jenkins_slave_user_group: "{{ jenkins_slave_user_name }}"       # Jekins user's primary group
+jenkins_slave_user_groups: ''           # Additional Jekins user groups
+
+jenkins_slave_user_home: /home/jenkins  
+
+jenkins_slave_name: "{{ ansible_os_family }}_1"
+jenkins_slave_dir: "{{ jenkins_slave_user_home }}/agent"
+jenkins_slave_label: my_rhel_slave_1
+
+jenkins_swarm_service_cmd: /usr/bin/java -jar {{ jenkins_slave_dir }}/swarm-client-{{ jenkins_swarm_client_version }}.jar -name {{ jenkins_slave_name}} -fsroot {{ jenkins_slave_dir }} -username {{jenkins_master_username}} -password {{ jenkins_master_api_token }} -master {{ jenkins_master_url }} -executors {{ no_of_executors}} -labels {{ jenkins_slave_label }} -disableSslVerification -retry {{ no_of_retries}}
+...

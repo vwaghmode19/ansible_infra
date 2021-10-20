@@ -23,19 +23,20 @@
     path: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
   register: specific_version
 
-- name: Package | Install specific version of Jenkins.
-  package:
+- name: Yum | Install specific version of Jenkins.
+  yum:
     name: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
     state: present
   when: jenkins_version is defined and specific_version.stat.exists
 
-- name: Ensure Jenkins is installed.
+- name: Package | Ensure Jenkins is installed.
   package:
     name: jenkins
     state: present
 
-- name: Service | start jenkins
-  service:
+- name: systemd | Start Jenkins and also issue daemon-reload to pick up config changes
+  systemd:
     name: jenkins
     state: started
+    daemon_reload: yes
 ...

@@ -33,8 +33,10 @@
   delay: 10
   check_mode: false
 
-- name: Service | Restart Jenkins to get init changes applied
-  service: name=jenkins state=restarted
+- name: systemd | Restart Jenkins to take effect of configurations
+  systemd:
+    name: jenkins
+    state: restarted
 
 - name: URI | Wait for Jenkins to start up before proceeding.
   uri:
