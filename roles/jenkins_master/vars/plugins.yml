@@ -1,8 +1,17 @@
+---
 # Plugin list can use the plugin name, or a name/version dict.
-jenkins_plugins:
-  - name: ant
-    version: 1.10
+#my_jenkins_plugins:
+#  - build-pipeline-plugin
+#  - token-macro
+#  - swarm
+
+my_jenkins_plugins:
+  - name: structs
+    version: '1.23'
   - name: credentials
-    version: 2.4
+    version: '2.5'
+  - name: ant
+    version: '1.12'
   - name: swarm
-    version: 3.25
+    version: '3.28'
+...

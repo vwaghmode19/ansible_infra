@@ -11,8 +11,8 @@
 - name: Include Task | Install Plugins
   include_tasks: plugin.yml
 
-- name: Service | restart jenkins
-  service:
+- name: Systemd | restart jenkins
+  systemd:
     name: jenkins
     state: restarted
 ...

@@ -1,0 +1,7 @@
+---
+ansible_user: LabUser
+ansible_password: "{{ dev_vault_win10e1_ansible_password }}"
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+...

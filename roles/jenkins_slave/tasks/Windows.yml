@@ -39,32 +39,32 @@
 - name: Copy | Copy WinSW executable (Windows Service Wrapper)
   win_copy:
     src: files/winsw.exe
-    dest: "{{ winsw_home }}"
+    dest: "{{ jenkins_slave_winsw_exe }}"
 
 - name: Copy | Copy service config file
   win_template:
     src: jenkins_swarm_client.xml.j2
-    dest: "{{ winsw_home }}winsw.xml"
+    dest: "{{ jenkins_slave_winsw_xml }}"
 
 - name: Command | Stop the service
-  win_command: winsw stop
+  win_command: "{{ jenkins_slave_winsw_app }} stop"
   args:
     chdir: "{{ winsw_home }}"
   ignore_errors: True
 
 - name: Command | Uninstall the Service using winsw
-  win_command: winsw uninstall
+  win_command: "{{ jenkins_slave_winsw_app }} uninstall"
   args:
     chdir: "{{ winsw_home }}"
   ignore_errors: True
 
 - name: Command | Install the Service using winsw
-  win_command: winsw install
+  win_command: "{{ jenkins_slave_winsw_app }} install"
   args:
     chdir: "{{ winsw_home }}"
 
 - name: Command | Start the Service using winsw
-  win_command: winsw start
+  win_command: "{{ jenkins_slave_winsw_app }} start"
   args:
     chdir: "{{ winsw_home }}"
 

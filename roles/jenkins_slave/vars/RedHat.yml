@@ -7,7 +7,7 @@ jenkins_slave_user_groups: ''           # Additional Jekins user groups
 
 jenkins_slave_user_home: /home/jenkins  
 
-jenkins_slave_name: "{{ ansible_os_family }}_1"
+jenkins_slave_name: jenkins-{{ ansible_os_family }}-agent
 jenkins_slave_dir: "{{ jenkins_slave_user_home }}/agent"
 jenkins_slave_label: my_rhel_slave_1
 

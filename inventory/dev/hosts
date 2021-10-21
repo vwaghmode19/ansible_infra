@@ -1,6 +1,6 @@
 # Default hosts location is /etc/ansible/hosts
 
-# localhost = 10.128.89.108
+# localhost = 10.128.89.17
 localhost 	ansible_connection=local
 
 [jenkins_master]
@@ -8,6 +8,4 @@ localhost 	ansible_connection=local
 
 [jenkins_slave]
 linux_slave1 	ansible_host=10.128.89.110
-my_win0 		ansible_host=10.128.43.22
-my_win		ansible_host=10.128.89.1
-
+win10e1		ansible_host=10.128.34.30
