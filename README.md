@@ -25,6 +25,14 @@ All are defined under defaults/ and vars/ of each role.
 
 Please check jenkins_site.yml
 
+`- \n
+  Host: 10.110.10.110 \n
+  Deployments: \n
+    - Name: ms_sql \n
+    - Name: keycloak \n
+    - Name: nice_extractor \n
+`
+
 # References:
 
 1. geerlingguy/ansible-role-jenkins -- > https://github.com/geerlingguy/ansible-role-jenkins
